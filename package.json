@@ -44,7 +44,6 @@
     "url": "https://github.com/devthejo/eslint-plugin-sql-pretty"
   },
   "scripts": {
-    "postinstall": "yarn run build",
     "build": "babel ./src --out-dir ./dist --copy-files",
     "lint": "eslint ./src",
     "lint:fix": "yarn run lint --fix",
