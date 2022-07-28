@@ -19,6 +19,10 @@ export default (context) => {
   const matchIndentation = pluginOptions.matchIndentation !== false;
   const tags = pluginOptions.tags || ['sql', 'sqlt'];
 
+  if (!pluginOptions.spaces) {
+    pluginOptions.spaces = 2;
+  }
+
   return {
     TemplateLiteral (node) {
       const sqlTagIsPresent = node.parent.tag && tags.includes(node.parent.tag.name);
@@ -47,9 +51,7 @@ export default (context) => {
         return;
       }
 
-      const {spaces, ...formatOptions} = pluginOptions;
-
-      let formatted = format(literal, formatOptions);
+      let formatted = format(literal, pluginOptions);
 
       formatted = formatted.trimStart();
 
@@ -69,7 +71,7 @@ export default (context) => {
         formatted = formattedLines
           .map((line) => {
             // Indent each subsequent line based on the spaces option
-            const indentSpaces = spaces || 2;
+            const indentSpaces = pluginOptions.spaces;
 
             const indentation = ' '.repeat(startingColumn + indentSpaces);
 
