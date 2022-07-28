@@ -46,7 +46,9 @@ export default (context) => {
         return;
       }
 
-      let formatted = format(literal, context.options[1]);
+      const {spaces, ...formatOptions} = pluginOptions;
+
+      let formatted = format(literal, formatOptions);
 
       formatted = formatted.trimStart();
 
@@ -66,7 +68,7 @@ export default (context) => {
         formatted = formattedLines
           .map((line) => {
             // Indent each subsequent line based on the spaces option
-            const indentSpaces = context.options[1].spaces || 4;
+            const indentSpaces = spaces || 2;
 
             const indentation = ' '.repeat(startingColumn + indentSpaces);
 

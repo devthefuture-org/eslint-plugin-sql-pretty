@@ -24,13 +24,11 @@ npm install eslint-plugin-sql-pretty --save-dev
   ],
   "rules": {
     "sql-pretty/format": [
-      2,
+      1,
       {
         "ignoreExpressions": false,
         "ignoreInline": true,
-        "ignoreTagless": true
-      },
-      {
+        "ignoreTagless": true,
         "spaces": 2
       }
     ],
