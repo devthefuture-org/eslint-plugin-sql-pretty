@@ -17,10 +17,11 @@ export default (context) => {
   const ignoreInline = pluginOptions.ignoreInline !== false;
   const ignoreTagless = pluginOptions.ignoreTagless !== false;
   const matchIndentation = pluginOptions.matchIndentation !== false;
+  const tags = pluginOptions.tags || ['sql', 'sqlt'];
 
   return {
     TemplateLiteral (node) {
-      const sqlTagIsPresent = node.parent.tag && node.parent.tag.name === 'sql';
+      const sqlTagIsPresent = node.parent.tag && tags.includes(node.parent.tag.name);
 
       if (ignoreTagless && !sqlTagIsPresent) {
         return;

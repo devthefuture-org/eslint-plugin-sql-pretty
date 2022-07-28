@@ -9,6 +9,7 @@ export default (context) => {
   const placeholderRule = context.settings.sql && context.settings.sql.placeholderRule;
 
   const allowLiteral = context.options && context.options[0] && context.options[0].allowLiteral;
+  const tags = context.options && context.options[0] && context.options[0].tags || ['sql', 'sqlt'];
 
   return {
     TemplateLiteral (node) {
@@ -32,7 +33,7 @@ export default (context) => {
         return;
       }
 
-      if (!node.parent.tag || node.parent.tag.name.toLowerCase() !== 'sql') {
+      if (!node.parent.tag || !tags.includes(node.parent.tag.name.toLowerCase())) {
         context.report({
           message: 'Use "sql" tag',
           node,

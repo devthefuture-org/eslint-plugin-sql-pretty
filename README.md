@@ -29,13 +29,15 @@ npm install eslint-plugin-sql-pretty --save-dev
         "ignoreExpressions": false,
         "ignoreInline": true,
         "ignoreTagless": true,
-        "spaces": 2
+        "spaces": 2,
+        "tags": ["sql","sqlt"]
       }
     ],
-    "sql/no-unsafe-query": [
+    "sql-pretty/no-unsafe-query": [
       2,
       {
-        "allowLiteral": false
+        "allowLiteral": false,
+        "tags": ["sql","sqlt"]
       }
     ]
   }
